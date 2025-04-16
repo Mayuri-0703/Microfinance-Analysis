@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Your Loan Eligibility</title>
+    <style>
+           body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    text-align: center;
+    padding: 20px;
+}
+
+.container {
+    max-width: 700px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #2c3e50;
+}
+
+.upload-section {
+    margin-top: 20px;
+    padding: 20px;
+    background: #eef5ff;
+    border-radius: 8px;
+}
+
+.required-columns {
+    background: #e8f5e9;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: left;
+}
+
+.required-columns h3 {
+    color: #2e7d32;
+}
+
+.required-columns ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.required-columns li {
+    padding: 5px 0;
+    font-size: 16px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 20px;
+    background: #007bff;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: 0.3s;
+    margin-top: 15px;
+    cursor: pointer;
+    border: none;
+}
+
+.btn:hover {
+    background: #0056b3;
+}
+
+.go-back {
+    background: #dc3545;
+}
+
+.go-back:hover {
+    background: #c82333;
+}
+
+input[type="file"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 10px;
+    width: 100%;
+}
+     
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>📂 Check Your Loan Eligibility</h1>
+        <p>💡 <strong>Quick, Easy & Accurate!</strong> Upload your transaction file and let our AI-powered model analyze your eligibility.</p>
+
+        <div class="upload-section">
+            <h2>Upload Your CSV File</h2>
+            <p>🔹 Ensure your file contains <strong>52 weeks of transaction data</strong> with the following columns:</p>
+
+            <div class="required-columns">
+                <h3>✅ Required Columns:</h3>
+                <ul>
+                    <li>📌 <strong>Vendor_No</strong> – Unique ID for the vendor</li>
+                    <li>📌 <strong>Business_Type</strong> – Type of business (e.g., Street Vendor, Shop Owner)</li>
+                    <li>📌 <strong>PAN_Card</strong> – Unique Personal Identification Number</li>
+                    <li>📌 <strong>Aadhaar_Card</strong> – Unique Identification Number issued by the Government of India</li>
+                    <li>📌 <strong>Total_Earnings</strong> – Total earnings over 52 weeks</li>
+                    <li>📌 <strong>Income_StdDev</strong> – Consistency in income</li>
+                </ul>
+            </div>
+
+            <form action="{{ url_for('upload_csv') }}" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" accept=".csv" required>
+                <button type="submit" class="btn">Upload & Check Eligibility</button>
+            </form>
+
+            <a href="{{ url_for('home') }}" class="btn go-back">⬅ Go Back</a>
+        </div>
+    </div>
+
+</body>
+</html>

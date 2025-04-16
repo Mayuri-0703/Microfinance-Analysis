@@ -1,0 +1,397 @@
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Amount Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            width: 400px;
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+            text-align: left;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .btn {
+            width: 100%;
+            background: #003366;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background: #002244;
+        }
+        .nav-btn {
+            background: #555;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+        .nav-btn:hover {
+            background: #333;
+        }
+        #result {
+            display: none;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            background: #fff;
+            width: 400px;
+        }
+        .result-buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .loading {
+            font-size: 20px;
+            color: #003366;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="formContainer">
+        <h2>Loan Amount Prediction</h2>
+        <form id="loanForm">
+            <label for="vendor_no">Vendor Number:</label>
+            <input type="text" id="vendor_no" name="vendor_no" required>
+
+            <label for="business_type">Business Type:</label>
+            <select id="business_type" name="business_type" required>
+                <option value="">Select</option>
+                <option value="Stationery Store">Stationery Store</option>
+                <option value="Handcrafts Vendor">Handcrafts Vendor</option>
+                <option value="Vegetable Seller">Vegetable Seller</option>
+                <option value="Small Toy Shop">Small Toy Shop</option>
+                <option value="Fruit Seller">Fruit Seller</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <label for="pan_card">PAN Card:</label>
+            <input type="text" id="pan_card" name="pan_card" required>
+
+            <label for="total_earnings">Total Earnings:</label>
+            <input type="number" id="total_earnings" name="total_earnings" required>
+
+            <label for="income_stddev">Income Standard Deviation:</label>
+            <input type="number" id="income_stddev" name="income_stddev" required>
+
+            <button type="submit" class="btn">Predict Loan Amount</button>
+        </form>
+    </div>
+
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('loanForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+            
+            let formData = new FormData(this);
+            let formContainer = document.getElementById('formContainer');
+            let resultText = document.getElementById('result');
+            
+            // Hide form and show "Processing" message
+            formContainer.style.display = 'none';
+            resultText.style.display = 'block';
+            resultText.innerHTML = `<p class="loading">😊 We are checking your loan eligibility...</p>`;
+
+            setTimeout(async () => {
+                try {
+                    let response = await fetch('/loan_prediction', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    let result = await response.json();
+
+                    if (result.error) {
+                        resultText.innerHTML = `<p style="color: red; font-size: 20px;"><b>Oops! ${result.error}</b></p>`;
+                    } else {
+                        resultText.innerHTML = `<p style="color: green; font-size: 20px;"><b>🎉 Congratulations! Your Predicted Loan Amount is: ₹${result.loan_amount.toFixed(2)}</b></p>`;
+                    }
+
+                    resultText.innerHTML += `
+                        <div class="result-buttons">
+                            <button class="nav-btn" onclick="location.href='/'">Home</button>
+                            <button class="nav-btn" onclick="resetForm()">Back</button>
+                        </div>
+                    `;
+                } catch (error) {
+                    resultText.innerHTML = `<p style="color: red; font-size: 20px;"><b>Something went wrong. Please try again.</b></p>`;
+                    resultText.innerHTML += `
+                        <div class="result-buttons">
+                            <button class="nav-btn" onclick="location.reload()">Try Again</button>
+                        </div>
+                    `;
+                }
+            }, 5000); // Show processing message for 5 seconds
+        });
+
+        function resetForm() {
+            document.getElementById('result').style.display = 'none';
+            document.getElementById('formContainer').style.display = 'block';
+            document.getElementById('loanForm').reset();
+        }
+    </script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Amount Prediction</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            width: 400px;
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+            text-align: left;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .btn {
+            width: 100%;
+            background: #003366;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background: #002244;
+        }
+        .nav-btn {
+            background: #555;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .nav-btn:hover {
+            background: #333;
+        }
+        #result {
+            display: none;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            background: #fff;
+            width: 400px;
+        }
+        .result-buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .loading {
+            font-size: 20px;
+            color: #003366;
+            font-weight: bold;
+        }
+        .nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.nav-btn {
+    background: #003366;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.nav-btn:hover {
+    background: #333;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container" id="formContainer">
+        <h2>Loan Amount Prediction</h2>
+        <form id="loanForm">
+            <label for="vendor_no">Vendor Number:</label>
+            <input type="text" id="vendor_no" name="vendor_no" required>
+
+            <label for="business_type">Business Type:</label>
+            <select id="business_type" name="business_type" required>
+                <option value="">Select</option>
+                <option value="Stationery Store">Stationery Store</option>
+                <option value="Handcrafts Vendor">Handcrafts Vendor</option>
+                <option value="Vegetable Seller">Vegetable Seller</option>
+                <option value="Small Toy Shop">Small Toy Shop</option>
+                <option value="Fruit Seller">Fruit Seller</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <label for="pan_card">PAN Card:</label>
+            <input type="text" id="pan_card" name="pan_card" required>
+
+            <label for="total_earnings">Total Earnings:</label>
+            <input type="number" id="total_earnings" name="total_earnings" required>
+
+            <label for="income_stddev">Income Standard Deviation:</label>
+            <input type="number" id="income_stddev" name="income_stddev" required>
+
+            <button type="submit" class="btn">Predict Loan Amount</button>
+        </form>
+        <div class="nav-buttons">
+            <button class="nav-btn" onclick="window.history.back()">
+                ⬅️ Back
+            </button>
+            <button class="nav-btn" onclick="window.location.href='/'">
+                🏠 Home
+            </button>
+        </div>
+        
+    </div>
+
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('loanForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+            
+            let formData = new FormData(this);
+            let formContainer = document.getElementById('formContainer');
+            let resultText = document.getElementById('result');
+            
+            formContainer.style.display = 'none';
+            resultText.style.display = 'block';
+            resultText.innerHTML = `<p class="loading">😊 We are checking your loan Prediction...</p>`;
+
+            setTimeout(async () => {
+                try {
+                    let response = await fetch('/loan_prediction', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    let result = await response.json();
+
+                    if (result.error) {
+                        resultText.innerHTML = `<p style="color: red; font-size: 20px;"><b>Oops! ${result.error}</b></p>`;
+                    } else {
+                        resultText.innerHTML = `<p style="color: green; font-size: 20px;"><b>🎉 Congratulations! Your Predicted Loan Amount is: ₹${result.loan_amount.toFixed(2)}</b></p>`;
+                    }
+
+                    resultText.innerHTML += `
+                        <div class="result-buttons">
+                            
+                            <button class="nav-btn" onclick="resetForm()">
+                                <i class="fas fa-arrow-left"></i> Back
+                            </button>
+                            <button class="nav-btn" onclick="location.href='/'">
+                                <i class="fas fa-home"></i> Home
+                            </button>
+                        </div>
+                    `;
+                } catch (error) {
+                    resultText.innerHTML = `<p style="color: red; font-size: 20px;"><b>Something went wrong. Please try again.</b></p>`;
+                    resultText.innerHTML += `
+                        <div class="result-buttons">
+                            <button class="nav-btn" onclick="location.reload()">Try Again</button>
+                        </div>
+                    `;
+                }
+            }, 5000);
+        });
+
+        function resetForm() {
+            document.getElementById('result').style.display = 'none';
+            document.getElementById('formContainer').style.display = 'block';
+            document.getElementById('loanForm').reset();
+        }
+    </script>
+</body>
+</html>

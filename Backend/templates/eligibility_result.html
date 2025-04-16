@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eligibility Results</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f7fa;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .results-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    margin-top: 50px;
+}
+
+.summary-box {
+    background: #f8f9fa;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #444;
+    display: inline-block;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.eligible {
+    color: green;
+}
+
+.non-eligible {
+    color: red;
+}
+
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 28px;
+        }
+
+        .charts {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        canvas {
+            max-width: 400px;
+            max-height: 300px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .button-container {
+            margin-top: 30px;
+        }
+
+        button {
+            padding: 12px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .loan-btn {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .home-btn {
+            background-color: #6c757d;
+            color: white;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+        .message {
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 20px;
+        padding: 10px;
+        color: #333;
+    }
+
+    .message p {
+        margin: 5px 0;
+    }
+
+    .cta-button {
+        display: block;
+        width: 200px;
+        margin: 10px auto;
+        padding: 10px;
+        font-size: 16px;
+        font-weight: bold;
+        color: white;
+        background-color: #17a2b8;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+    }
+
+    .cta-button:hover {
+        background-color: #138496;
+    }
+
+    .button-container {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .back-button, .home-button {
+        display: inline-block;
+        padding: 10px 15px;
+        font-size: 16px;
+        font-weight: bold;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: 0.3s ease-in-out;
+    }
+
+    .back-button {
+        background-color: #007bff;
+        margin-right: 10px;
+    }
+
+    .back-button:hover {
+        background-color: #0056b3;
+    }
+
+    .home-button {
+        background-color: #28a745;
+    }
+
+    .home-button:hover {
+        background-color: #1e7e34;
+    }
+    </style>
+</head>
+<body>
+
+    <h1 class="results-title">Loan Eligibility Results</h1>
+
+    <div class="summary-box">
+        <span class="eligible">✅ Eligible Candidates: {{ eligible_count }}</span> |
+        <span class="non-eligible">❌ Non-Eligible Candidates: {{ non_eligible_count }}</span>
+    </div>
+    
+        <br><br>
+    <div class="container">
+        <div class="charts">
+            <canvas id="pieChart"></canvas>
+            <canvas id="barChart"></canvas>
+        </div>
+
+        <h2>Eligible Candidates</h2>
+        <table>
+            <tr>
+                <th>Sr. No.</th>
+                <th>Vendor No</th>
+                <th>Business Type</th>
+                <th>PAN Card</th>
+                <th>Aadhaar Card</th>
+                <th>Total Earnings</th>
+                <th>Payment Consistency</th>
+            </tr>
+            {% for candidate in eligible %}
+            <tr>
+                <td>{{ loop.index }}</td>  <!-- Serial Number -->
+                <td>{{ candidate.Vendor_No }}</td>
+                <td>{{ candidate.Business_Type }}</td>
+                <td>{{ candidate.PAN_Card }}</td>
+                <td>{{ candidate.Aadhaar_Card }}</td>
+                <td>{{ candidate.Total_Earnings }}</td>
+                <td>{{ candidate.Income_StdDev }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <div class="message">
+            <p>📢 Curious to know how much loan you can get?</p>
+            <p>Let's find out in just one click!</p>
+        </div>
+        <button class="cta-button" onclick="window.location.href='{{ url_for('loan_prediction') }}'">
+            Click on me!
+        </button>
+        
+    </div>
+    <div class="button-container">
+        <a href="javascript:history.back()" class="back-button">🔙 Previous</a>
+        <button class="home-button" onclick="location.replace('/')">Home</button>
+
+    </div>
+
+    <script>
+        var ctx1 = document.getElementById('pieChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'pie',
+            data: {
+                labels: ['Eligible', 'Non-Eligible'],
+                datasets: [{
+                    data: [{{ eligible_count }}, {{ non_eligible_count }}],
+                    backgroundColor: ['#28a745', '#dc3545']
+                }]
+            }
+        });
+
+        var ctx2 = document.getElementById('barChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: ['Eligible', 'Non-Eligible'],
+                datasets: [{
+                    data: [{{ eligible_count }}, {{ non_eligible_count }}],
+                    backgroundColor: ['#28a745', '#dc3545']
+                }]
+            },
+            options: {
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

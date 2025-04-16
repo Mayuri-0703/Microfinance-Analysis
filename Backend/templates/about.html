@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Microfinance Analysis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+        header {
+            background-color: #2a3d66;
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h2 {
+            margin: 0;
+            font-size: 2.8em; /* Increased size for better readability */
+            font-weight: 600;
+        }
+
+        header p {
+            margin-top: 8px;
+            font-size: 1.2em;
+            opacity: 0.85;
+        }
+
+        .container {
+            width: 60%;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+        h1 {
+            color: #1f2e5a;
+        }
+        .section {
+            text-align: left;
+            padding: 10px 20px;
+        }
+        .highlight {
+            font-weight: bold;
+        }
+        .back-button {
+            background-color: #1f2e5a;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        .nav-btn {
+    background: #003366; /* Dark blue */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.2s;
+    text-align: center;
+    width: 100%;
+    max-width: 200px;
+    display: block;
+    margin: 20px auto;
+}
+
+.nav-btn:hover {
+    background: #002244; /* Slightly darker on hover */
+    transform: scale(1.05);
+}
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1 style="color: white;">Microfinance-Analysis</h1>
+        <h3>Predictive Microfinance: Enhancing Loan Eligibility</h3>
+    </header>
+        
+    <div class="container">
+        <div class="section">
+            <h2>Do you know what Microfinance is?</h2>
+            <p>Microfinance is a financial service that helps small business owners, entrepreneurs, and individuals who do not have access to traditional banking.</p>
+        </div>
+        
+        <div class="section">
+            <h2>How does our system work?</h2>
+            <p><span class="highlight">📂 Upload your transaction history</span> - Provide a CSV file containing 52 weeks of income transactions.</p>
+            <p><span class="highlight">🔍 Loan eligibility check</span> - Our ML model analyzes your financial consistency and classifies applicants as eligible or non-eligible.</p>
+            <p><span class="highlight">💰 Loan amount prediction</span> - If eligible, you can enter your income standard deviation & consistency, and our model predicts the loan amount you can receive.</p>
+        </div>
+        
+        <div class="section">
+            <h2>Required Columns:</h2>
+            <p>📌 <span class="highlight">Business_Type</span> - Type of business (e.g., Street Vendor, Shop Owner)</p>
+            <p>📌 <span class="highlight">Total_Earnings</span> - Total earnings over 52 weeks</p>
+            <p>📌 <span class="highlight">Income_StdDev</span> - Income standard deviation</p>
+            <p>📌 <span class="highlight">PAN_Card</span> - Permanent Account Number for identification</p>
+            <p>📌 <span class="highlight">Aadhaar_Card</span> - Government-issued ID for verification</p>
+        </div>
+        
+        <div class="section">
+            <h2>Why is this important?</h2>
+            <p>❌ <b>No need for a CIBIL score</b> - Perfect for small vendors, farmers, and micro-business owners</p>
+            <p>✅ <b>Fair decision-making</b> - Based on transaction patterns, not credit history</p>
+            <p>📈 <b>Empowering small businesses</b> - Giving access to financial aid where it's needed the most</p>
+        </div>
+        
+        <button class="nav-btn" onclick="location.replace('/')">Back to Home</button>
+
+    </div>
+
+    <!-- <script>
+        function goHome() {
+            window.location.href = '/';  // Redirects to the homepage
+        }
+    </script> -->
+
+   
+</body>
+</html>

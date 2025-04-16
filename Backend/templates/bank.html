@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Namdhinggo:wght@400;500;600&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <!-- Custom CSS -->
+  <!-- <link rel="stylesheet" href="static/bank.css" /> -->
+   <!-- Correct way to load CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='bank.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='logo.webp') }}" />
+  <title>Microfinance-Analysis</title>
+</head>
+<style>
+  #logo{
+    border-radius: 50%;
+}
+</style>
+<body>
+  <!-- Header Section -->
+  <header>
+    <div class="header-container">
+      <img src="{{ url_for('static', filename='assets/logo.webp') }}" id="logo" alt="Microfinance Analysis Logo" />   
+      <div class="header-text">
+        <h1 style="margin-left: 0px;">Microfinance-Analysis</h1>
+        <h3>Predictive Microfinance: Enhancing Loan Eligibility</h3>
+      </div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="{{ url_for('about') }}">About</a>
+        <li class="dropdown">
+          <a href="#" aria-haspopup="true" aria-expanded="false">Services &#9662;</a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ url_for('check_eligibility')}}">Loan Eligibility Check</a></li>
+            <li><a href="{{ url_for('Educational_Resources')}}">Educational Resources</a></li>
+          </ul>
+        </li>
+        <li><a href="{{ url_for('contact')}}">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="search-container">
+      <i class="fas fa-search"></i>
+    </div>
+    <div class="auth-container">
+      <!-- Login or user icon will display here -->
+      <div id="loginBtn" class="login-button">Login</div>
+
+      
+  </div>
+
+  </header>
+    
+  <main>
+      <section class="image-slider">
+        <div class="slide">
+          <img src="{{ url_for('static', filename='assets/img1.jpg') }}" alt="Microfinance Support">
+            <div class="text-overlay">Empowering Small Businesses with Microfinance</div>
+        </div>
+        <div class="slide">
+            <img src="{{ url_for('static', filename='assets/img2copy.png') }}" alt="Loan Eligibility">
+            <div class="text-overlay">Making Loan Eligibility Simple and Fast</div>
+        </div>
+        <div class="slide">
+            <img src="{{ url_for('static', filename='assets/img4copy.png') }}" alt="Financial Growth">
+            <div class="text-overlay">Helping You Achieve Financial Growth</div>
+        </div>
+        <div class="slide">
+            <img src="{{ url_for('static', filename='assets/img6copy.png') }}" alt="Financial Growth">
+            <div class="text-overlay">Helping You Achieve Financial Growth</div>
+        </div> 
+    <!-- </section>
+    
+      <!-- <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+      <button class="next" onclick="changeSlide(1)">&#10095;</button> -->
+    </section>
+    
+    <br>
+
+  <!-- Greeting Section -->
+    <section class="greeting">
+      <h2>Welcome to Microfinance Analysis!</h2>
+      <p>Your trusted platform for loan eligibility and financial insights.</p>
+
+      <p>We empower small businesses and individuals by providing easy access to financial insights. 
+        Our platform helps you analyze transactions, predict loan eligibility, and make smarter 
+        financial decisions.</p>
+ 
+     <p>💡 <strong>Why choose us?</strong></p>
+     <ul>
+         <li>✔ Quick and accurate loan eligibility checks</li>
+         <li>✔ AI-driven financial insights</li>
+         <li>✔ Secure and user-friendly platform</li>
+         <li>✔ Empowering micro-entrepreneurs and small businesses</li>
+     </ul>
+ 
+  </section>
+    
+    <!-- Key Features Section -->
+    <!-- <section class="features">
+      <div class="feature-box">
+        <h3>Data-Driven Loan Analysis</h3>
+        <p>We analyze transaction history to determine eligibility.</p>
+      </div>
+      <div class="feature-box">
+        <h3>Quick &amp; Transparent</h3>
+        <p>Instant eligibility results based on financial history.</p>
+      </div>
+      <div class="feature-box">
+        <h3>Support for Small Earners</h3>
+        <p>Designed for street vendors, dairy farmers, fruit sellers, and handcraft vendors.</p>
+      </div>
+    </section>
+     -->
+     <section class="features">
+      <div class="feature-box">
+          <i class="fas fa-chart-line"></i>
+          <h3>Data-Driven Loan Analysis</h3>
+          <p>We analyze transaction history to determine eligibility.</p>
+      </div>
+      <div class="feature-box">
+          <i class="fas fa-bolt"></i>
+          <h3>Quick & Transparent</h3>
+          <p>Instant eligibility results based on financial history.</p>
+      </div>
+      <div class="feature-box">
+          <i class="fas fa-users"></i>
+          <h3>Support for Small Earners</h3>
+          <p>Designed for street vendors, dairy farmers, fruit sellers, and handcraft vendors.</p>
+      </div>
+  </section>
+  
+    <!-- Hero Section -->
+    <section class="hero">
+      <h2>Empowering Small Earners with Easy Loans</h2>
+      <br>
+      <p>Our platform uses your recent transaction data to determine loan eligibility without tedious paperwork.</p>
+      <br>
+      <!-- Redirects user to a dedicated eligibility process page -->
+      <!-- <button class="check-btn" onclick="window.location.href='eligibility.html'">Check Eligibility</button> -->
+      <a href="{{ url_for('check_eligibility') }}" class="btn">Check Eligibility</a>
+
+    </section>
+    
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <h2>How It Works</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="icon-container">
+            <i class="fas fa-sign-in-alt"></i>
+          </div>
+        <h3>Login/Sign Up</h3>
+        <p>Access your personalized dashboard securely.</p>
+      </div>
+      <div class="step">
+        <div class="icon-container">
+          <i class="fas fa-file-upload"></i>
+        </div>
+        <h3>Upload Data</h3>
+        <p>Submit your 52-week transaction CSV file effortlessly.</p>
+      </div>
+      <div class="step">
+        <div class="icon-container">
+          <i class="fas fa-cogs"></i>
+        </div>
+        <h3>Data Analysis</h3>
+        <p>Our ML models analyze your data in real time.</p>
+      </div>
+      <div class="step">
+        <div class="icon-container">
+          <i class="fas fa-check-circle"></i>
+        </div>
+        <h3>Get Results</h3>
+        <p>View your loan eligibility on the next page.</p>
+      </div>
+    </div>
+  </section>
+  
+ 
+    <!-- Info Boxes: Mission, Vision, Goal -->
+    <div class="container">
+      <div class="box">
+        <h4 style="background-image: url('{{ url_for('static', filename='assets/our-mission.jpg') }}');">Our Mission</h4>
+        <p><strong>Empowering small-scale entrepreneurs through transparent, 
+          data-driven loan assessments.</strong></p>
+      </div>
+      <div class="box">
+        <h4 style="background-image: url('{{ url_for('static', filename='assets/our-vision.jpg') }}');">Our Vision</h4>
+        <p><strong>Revolutionizing microfinance by enabling financial inclusion 
+          with cutting-edge technology.</strong></p>
+      </div>
+      <div class="box">
+        <h4 style="background-image: url('{{ url_for('static', filename='assets/our-goal.jpg') }}');">Our Goal</h4>
+        <p><strong>Providing an efficient and accessible loan 
+          eligibility system for every small earner.</strong></p>
+      </div>
+    </div>
+    <br><br><br><br><br><br>
+    <!-- <footer>
+      <p>&copy; 2025 Microfinance Analysis. All rights reserved.</p>
+    </footer>
+
+  </main> -->
+  <footer>
+    <p>&copy; 2025 Microfinance Analysis. All rights reserved.</p>
+</footer>
+
+
+  
+ <!-- Correct way to load JS -->
+    <script src="{{ url_for('static', filename='bank.js') }}"></script>
+  <!-- <script src="static/bank.js"></script> -->
+</body>
+</html>

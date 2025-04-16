@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #eef4fb;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #1e3d59;
+      color: white;
+      padding: 30px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 36px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    }
+
+    .section-title {
+      color: #1e3d59;
+      font-size: 24px;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 5px;
+    }
+
+    .contact-box {
+      margin-bottom: 30px;
+    }
+
+    .contact-box p {
+      margin: 8px 0;
+      font-size: 16px;
+    }
+
+    .highlight {
+      font-weight: bold;
+      color: #0c3c74;
+    }
+    .back-home-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.back-home-btn {
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #003366;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.back-home-btn:hover {
+    background-color: #003366;
+    transform: scale(1.05);
+}
+
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #1e3d59;
+      color: white;
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Contact Us</h1>
+  </header>
+
+  <div class="container">
+    <div class="contact-box">
+      <div class="section-title">Query & Guidance Assistance</div>
+      <p><span class="highlight">Prof. Yogesh Risodkar</span></p>
+      <p>Head of Electronics & Telecommunication Department</p>
+      <p>Email: <a href="mailto:yogesh.risodkar@siem.org.in">yogesh.risodkar@siem.org.in</a></p>
+    </div>
+
+    <div class="contact-box">
+      <div class="section-title">For Any Help, Contact Us</div>
+      <p><span class="highlight">Omkar Mandlik</span></p>
+      <p>Email: <a href="mailto:mandlikomkar9@gmail.com">mandlikomkar9@gmail.com</a></p>
+
+      <p><span class="highlight">Mayuri Pawar</span></p>
+      <p>Email: <a href="mailto:mayurispawar03@gmail.com">mayurispawar03@gmail.com</a></p>
+    </div>
+  </div>
+
+  <div class="back-home-container">
+    <button onclick="goHome()" class="back-home-btn">← Back to Home</button>
+</div>
+
+ <br><br>
+  <footer>
+    &copy; 2025 Microfinance Analysis Project 
+  </footer>
+  <script>
+     function goHome() {
+    window.location.href = "/"; // Make sure index.html is the correct home page filename
+}
+  </script>
+ 
+
+
+</body>
+</html>
